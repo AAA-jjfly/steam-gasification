@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from datetime import datetime
+import datetime
 import pickle
 
 @st.cache_resource
@@ -17,7 +17,7 @@ st.set_page_config(
 
 #侧边栏
 st.sidebar.title("功能导航")
-st.session_state.date_time = datetime.now()+ datetime.timedelta(hours=8)
+st.session_state.date_time = datetime.datetime.now()+ datetime.timedelta(hours=8)
 d = st.sidebar.date_input("日期",st.session_state.date_time.date())
 t = st.sidebar.time_input("时间",st.session_state.date_time.time())
 st.sidebar.divider()
