@@ -1,7 +1,5 @@
-streamlit==1.45.1
+streamlit-echarts==0.4.0
 matplotlib==3.7.1
 seaborn==0.12.2
+xgboost==1.7.4
 scikit-learn==1.2.1
-xgboost==3.0.2
-numpy==1.24.3
-pandas==2.0.3
