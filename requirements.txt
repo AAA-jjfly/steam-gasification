@@ -2,6 +2,6 @@ streamlit==1.45.1
 matplotlib==3.7.1
 seaborn==0.12.2
 scikit-learn==1.2.1
-xgboost==2.0.3
+xgboost==3.0.2
 numpy==1.24.3
 pandas==2.0.3
