@@ -137,7 +137,7 @@ else:
             num_points = st.number_input("数据点数量", min_value=3, max_value=20
                                          , value=5, step=1)
             ts = np.linspace(min_T, max_T, num_points)
-            params = [(fixed_A, fixed_FC, fixed_V, fixed_C, fixed_H, fixed_O, fixed_ER, t, fixed_SB)for t in temps]
+            params = [(fixed_A, fixed_FC, fixed_V, fixed_C, fixed_H, fixed_O, fixed_ER, t, fixed_SB)for t in ts]
             index = ts
         else:
             fixed_ER = st.slider("氧气当量比(ER) - 固定值", 0.00, 0.50, 0.15)
