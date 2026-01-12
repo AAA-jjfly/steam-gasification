@@ -13,7 +13,7 @@ import os
 plt.rcParams.update({
     'font.family': 'sans-serif',
     'font.sans-serif': [
-        'SimHei',        # 黑体 (Windows)
+        'Source Han Sans CN', # 开源思源黑体
         'Microsoft YaHei',  # 微软雅黑 (Windows)
         'PingFang SC',   # 苹方 (macOS)
         'Hiragino Sans GB',  # 冬青黑体 (macOS)
