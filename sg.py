@@ -9,7 +9,27 @@ import plotly.graph_objects as go
 from io import BytesIO
 import warnings
 import os
+import matplotlib.font_manager
 
+# 获取所有字体信息
+font_list = matplotlib.font_manager.fontManager.ttflist
+
+# 提取所有字体的名称（并去重）
+all_font_names = sorted(set([f.name for f in font_list]))
+
+# 查找包含中、日、韩（CJK）语言标识的字体
+cjk_fonts = []
+for font in font_list:
+    if hasattr(font, 'name') and font.name:
+        # 查找字体名或路径中是否包含常见CJK关键词
+        lower_name = font.name.lower()
+        if any(key in lower_name for key in ['chinese', 'cjk', 'sc', 'tc', 'jp', 'kr', 'han', 'hei', 'song', 'kai', 'gothic', 'mincho']):
+            cjk_fonts.append(font.name)
+
+st.write("### 服务器字体环境诊断")
+st.write(f"共发现字体数量: {len(all_font_names)}")
+st.write("**可用的CJK（中/日/韩）字体名称:**", set(cjk_fonts) if cjk_fonts else "未找到明确的CJK字体")
+st.write("**完整字体列表（前50个）:**", all_font_names[:50])
 plt.rcParams.update({
     'font.family': 'sans-serif',
     'font.sans-serif': [
