@@ -3,7 +3,7 @@ import shap
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 import pickle
 import plotly.graph_objects as go
 from io import BytesIO
@@ -65,7 +65,8 @@ st.set_page_config(
 
 #侧边栏
 st.sidebar.title("功能导航")
-st.session_state.date_time = datetime.now()
+# 统一按北京时间(UTC+8)显示，避免云端服务器默认UTC导致时间偏差
+st.session_state.date_time = datetime.now(timezone(timedelta(hours=8)))
 d = st.sidebar.date_input("日期",st.session_state.date_time.date())
 t = st.sidebar.time_input("时间",st.session_state.date_time.time())
 st.sidebar.divider()
