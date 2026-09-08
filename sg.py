@@ -300,17 +300,16 @@ elif function_choice == "影响规律预测":
                                                 param_dict['C'], param_dict['H'], param_dict['O'],
                                                 param_dict['ER'], param_dict['T'], param_dict['SB']])
                     data_frame = pd.DataFrame(all_params, columns=['A', 'FC', 'V', 'C', 'H', 'O', 'ER', 'T', 'SB'])
-                    submitted = st.form_submit_button("提交预测", use_container_width=True)
                     try:
-                            # 检查模型是否需要 "S/B"
-                            if hasattr(model, "feature_names_in_"):
-                                model_cols = list(model.feature_names_in_)
-                                if "S/B" in model_cols and "SB" in data_frame.columns:
-                                    data_frame = data_frame.rename(columns={"SB": "S/B"})
-                            new_prediction = model.predict(data_frame)
-                        #结果解读
+                        # 检查模型是否需要 "S/B"
+                        if hasattr(model, "feature_names_in_"):
+                            model_cols = list(model.feature_names_in_)
+                            if "S/B" in model_cols and "SB" in data_frame.columns:
+                                data_frame = data_frame.rename(columns={"SB": "S/B"})
+                        new_prediction = model.predict(data_frame)
                     except Exception as e:
                         st.error(f"预测失败：{str(e)}")
+                        st.stop()          # 预测失败就停下，不再往下画图
                     # 重塑预测结果为网格格式
                     Z = new_prediction.reshape(len(y_values), len(x_values))
                     st.success("多因素分析完成！")
